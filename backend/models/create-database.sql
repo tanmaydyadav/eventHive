@@ -95,32 +95,8 @@ ALTER TABLE tickets ADD COLUMN scanned BOOLEAN DEFAULT FALSE;
 -- Ensure unique tickets per user for an event
 ALTER TABLE tickets ADD CONSTRAINT unique_user_ticket UNIQUE (event_id, user_id);
 
--- Default values for seat availability management
 ALTER TABLE seat_categories ADD CONSTRAINT available_seats_check CHECK (available_seats <= total_seats);
--- add salesperson in between
 ALTER TABLE events
 ADD COLUMN salesperson_id INT REFERENCES salesperson(salesperson_id) ON DELETE SET NULL;
 
--- Sample Queries for Testing
--- Insert sample roles
-INSERT INTO users (username, password, role) VALUES ('admin_user', 'hashed_password', 'admin');
-INSERT INTO users (username, password, role) VALUES ('client_user', 'hashed_password', 'client');
-INSERT INTO users (username, password, role) VALUES ('security_user', 'hashed_password', 'security_guard');
-
--- Insert a sample event
-INSERT INTO events (event_name, event_description, event_date, created_by) 
-VALUES ('Music Fest 2025', 'An electrifying music festival', '2025-03-15 18:00:00', 1);
-
--- Insert a sample seat category
-INSERT INTO seat_categories (event_id, category_name, price, total_seats, available_seats)
-VALUES (1, 'VIP', 150.00, 100, 100),
-       (1, 'General', 50.00, 200, 200);
-
--- Insert a sample ticket
-INSERT INTO tickets (event_id, user_id, seat_category_id, qr_code, uploaded_photo)
-VALUES (1, 2, 1, 'sample_qr_code', '\x89504E470D0A1A0A');
-
--- Insert a memory
-INSERT INTO memories (user_id, event_id, photo)
-VALUES (2, 1, '\x89504E470D0A1A0A');
 

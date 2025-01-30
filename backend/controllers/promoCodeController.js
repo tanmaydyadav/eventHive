@@ -2,7 +2,6 @@ const bcrypt = require("bcryptjs");
 const pool = require("../config/db");
 const jwt = require("jsonwebtoken");
 // const { query } = require("express");
-const jwt_secret_token = "helloworld";
 const applyPromoCode = async (req, res) => {
     let user_id = req.userId;
     const {  promo_code, cart_total } = req.body;

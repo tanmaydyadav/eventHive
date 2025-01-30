@@ -1,18 +1,18 @@
 const { Pool } = require("pg");
 
 const devConfig = {
-  user: process.env.PGUSER || 'postgres',      // Use environment variable or fallback to 'postgres'
-  password: process.env.PGPASSWORD || 'root', // Use environment variable or fallback to 'root'
-  host: process.env.PGHOST || 'localhost',    // Use environment variable or fallback to 'localhost'
-  database: process.env.PGDATABASE || 'eventhivedb', // Use environment variable or fallback to 'EventHiveDB'
-  port: process.env.PGPORT || 5432,           // Use environment variable or fallback to 5432
+  user: process.env.PGUSER ,      // Use environment variable or fallback to 'postgres'
+  password: process.env.PGPASSWORD , // Use environment variable or fallback to 'root'
+  host: process.env.PGHOST ,    // Use environment variable or fallback to 'localhost'
+  database: process.env.PGDATABASE , // Use environment variable or fallback to 'EventHiveDB'
+  port: process.env.PGPORT ,           // Use environment variable or fallback to 5432
   ssl: false                                  // Disable SSL for development
 };
-
+ 
 const proConfig = {
-  connectionString: "postgres://postgres:root@localhost:5432/eventhivedb", // Use DATABASE_URL environment variable in production
+  connectionString: process.env.DATABASE_URL,
   ssl: {
-    rejectUnauthorized: false                 // For hosted databases (e.g., Heroku, AWS RDS)
+    rejectUnauthorized: false            
   }
 };
 

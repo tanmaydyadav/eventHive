@@ -2,7 +2,6 @@ const bcrypt = require("bcryptjs");
 const pool = require("../config/db");
 const jwt = require("jsonwebtoken");
 const { query } = require("express");
-const jwt_secret_token = "helloworld";
 
 //register a new user;
 // role of user -0 ,admin-1,guard-2
@@ -46,7 +45,7 @@ const loginUser = async(req,res)=> {
                 id:user[0].client_id,
                 role:user[0].role
         }
-        const authToken =  jwt.sign(payLoad,jwt_secret_token);
+        const authToken =  jwt.sign(payLoad,process.env.JWT_TOKEN);
        return res.status(200).json({role:user[0].role, authToken});
     }else {
       return  res.status(400).json("user does not exists");

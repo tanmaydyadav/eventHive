@@ -3,7 +3,6 @@ const pool = require("../config/db");
 const jwt = require("jsonwebtoken");
 const { query } = require("express");
 const { all } = require("../routes/auth");
-const jwt_secret_token = "helloworld";
 
 const getAllSeatCategorysForSpecificEvent = async(req ,res)=> {
 try {

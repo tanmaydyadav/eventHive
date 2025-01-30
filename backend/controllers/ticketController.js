@@ -2,8 +2,7 @@
 
 const pool = require("../config/db"); // Database connection
 const cloudinary = require("../Cloudinary/cloud");
-const secret_key = "sk_test_51QfNnkF7UkxkbrgCyMH8CKOCiyyk15i2feLbqqXFNCqCUTZNNwmAYoLnT8r84lVPhNmq4GxNmnzlS4F6ZbLDNhqN00ATkxqN6v";
-const stripe = require("stripe")(secret_key); // Replace with your Stripe Secret Key
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY); // Replace with your Stripe Secret Key
 const redis = require("../config/redisConfig");
 
 // lock seat 
